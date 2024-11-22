@@ -31,13 +31,15 @@ ext {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail:3.3.5'
     implementation 'org.springframework.boot:spring-boot-starter-web:3.3.5'
-    'org.springframework.boot:spring-boot-starter-amqp:3.3.5'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp:3.3.5'
     implementation 'org.springframework.cloud:spring-cloud-starter-config:4.1.3'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     implementation 'org.springframework.cloud:spring-cloud-sleuth-core:2.2.8.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix:2.2.10.RELEASE'
     implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:4.1.4'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'junit:junit:4.13.2'
 }
 

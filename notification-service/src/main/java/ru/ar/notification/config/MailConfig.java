@@ -26,9 +26,10 @@ public class MailConfig {
         mailSender.setPassword(env.getProperty("mail.password"));
 
         Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.transport.protocol", env.getProperty(;
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.transport.protocol", env.getProperty("mail.transport.protocol"));
+        props.put("mail.smtp.auth", env.getProperty("mail.smtp.auth"));
+        props.put("mail.smtp.starttls.enable", env.getProperty("mail.smtp.starttls.enable"));
+        props.put("mail.debug", env.getProperty("mail.debug"));
         return mailSender;
     }
 }
