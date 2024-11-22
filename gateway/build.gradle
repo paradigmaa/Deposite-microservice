@@ -1,0 +1,88 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'ru.ar.gateway.GatewayApplication'
+        )
+    }
+}
+
+ext {
+    set('springCloudVersion', "2023.0.3")
+}
+
+dependencies {
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul:2.2.10.RELEASE'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config:4.1.3'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation 'org.springframework.cloud:spring-cloud-sleuth-core:2.2.8.RELEASE'
+    implementation "org.springframework.cloud:spring-cloud-starter"
+    implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:4.1.4'
+
+
+
+    testImplementation 'junit:junit:4.13.2'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+/*
+В вашем build.gradle файле перечислены зависимости для микросервиса, который, судя по всему, является API Gateway. Давайте разберем каждую зависимость и её назначение:
+
+        1. org.springframework.cloud:spring-cloud-starter-netflix-zuul:2.2.10.RELEASE
+Назначение: Эта зависимость предоставляет поддержку для Zuul, который является маршрутизатором и прокси-сервером для микросервисов в Spring Cloud. Zuul позволяет направлять запросы к соответствующим микросервисам на основе правил маршрутизации.
+
+Зачем нужен: Zuul используется для маршрутизации запросов между клиентами и микросервисами, обеспечивая балансировку нагрузки, мониторинг, безопасность и другие функции.
+
+2. org.springframework.cloud:spring-cloud-starter-config:4.1.3
+Назначение: Эта зависимость предоставляет поддержку для Spring Cloud Config, который является централизованным сервером конфигурации для распределенных систем. Он позволяет управлять конфигурационными файлами для всех микросервисов.
+
+        Зачем нужен: Spring Cloud Config позволяет централизованно управлять конфигурацией микросервисов, что упрощает развертывание и управление приложениями.
+
+3. org.springframework.cloud:spring-cloud-starter-netflix-eureka-client
+Назначение: Эта зависимость предоставляет поддержку для клиента Eureka, который является сервисом обнаружения в Spring Cloud. Eureka позволяет микросервисам регистрироваться и обнаруживать друг друга.
+
+        Зачем нужен: Eureka используется для динамического обнаружения микросервисов в распределенной системе, что позволяет автоматически находить и взаимодействовать с другими сервисами.
+
+4. org.springframework.cloud:spring-cloud-sleuth-core:2.2.8.RELEASE
+Назначение: Эта зависимость предоставляет поддержку для Spring Cloud Sleuth, который является библиотекой для распределенной трассировки. Sleuth добавляет идентификаторы трассировки к запросам, что позволяет отслеживать их прохождение через различные микросервисы.
+
+Зачем нужен: Spring Cloud Sleuth помогает в отладке и мониторинге распределенных систем, предоставляя возможность отслеживать запросы через различные микросервисы.
+
+5. org.springframework.cloud:spring-cloud-starter
+Назначение: Эта зависимость является базовой для всех проектов Spring Cloud. Она предоставляет общие зависимости и настройки, необходимые для работы с микросервисами.
+
+        Зачем нужен: Эта зависимость обеспечивает базовую поддержку для работы с микросервисами в Spring Cloud, включая конфигурацию и настройки.
+
+6. junit:junit:4.13.2
+Назначение: Эта зависимость предоставляет поддержку для фреймворка JUnit, который является популярным фреймворком для написания и выполнения модульных тестов в Java.
+
+        Зачем нужен: JUnit используется для написания и выполнения тестов, чтобы убедиться, что код работает корректно и соответствует ожиданиям.
+
+        Заключение
+Эти зависимости необходимы для создания и поддержки API Gateway в микросервисной архитектуре. Они обеспечивают маршрутизацию запросов, централизованное управление конфигурацией, обнаружение сервисов, распределенную трассировку и тестирование.*/
