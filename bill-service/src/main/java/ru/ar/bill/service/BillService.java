@@ -9,6 +9,7 @@ import ru.ar.bill.entity.Bill;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Service
 public class BillService {
@@ -37,5 +38,9 @@ public class BillService {
         Bill bill = getBill(billId);
         billRepository.delete(bill);
         return bill;
+    }
+
+    public List<Bill> findtoBillAccountID(Long accountId){
+        return billRepository.getBillsByAccountId(accountId);
     }
 }

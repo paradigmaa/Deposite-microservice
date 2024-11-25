@@ -7,6 +7,9 @@ import ru.ar.bill.controller.dto.BillResponseDTO;
 import ru.ar.bill.entity.Bill;
 import ru.ar.bill.service.BillService;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 public class BillController {
 
@@ -34,6 +37,11 @@ public class BillController {
     @DeleteMapping("/{billId}")
     public BillResponseDTO deleteBill(@PathVariable Long billId) {
         return new BillResponseDTO(billService.deleteBill(billId));
+    }
+
+    @GetMapping("/account/{accountId}")
+    List<BillResponseDTO> getAllBills(@PathVariable  Long accountId) {
+        return billService.findtoBillAccountID(accountId).stream().map(BillResponseDTO::new).collect(Collectors.toList());
     }
 
 
