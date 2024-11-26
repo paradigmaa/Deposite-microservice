@@ -11,4 +11,4 @@ out/
 !**/src/test/**/out/
 **/build/
 !**/src/
-notification-service/src/main/resources/mail-props.properties
+notification-service/src/main/resources/secrets.properties
