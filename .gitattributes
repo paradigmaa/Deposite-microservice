@@ -1,0 +1,3 @@
+*.java linguist-language=Java
+*.html linguist-documentation
+*.sh linguist-documentation
